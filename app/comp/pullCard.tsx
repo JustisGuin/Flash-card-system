@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 
-import { CardData, getCardsFromDB } from '@/app/components/cards_server'
+import { CardData, getCardsFromDB } from '@/app/comp/cardServer'
 
 export interface Card {
   id: string

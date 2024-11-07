@@ -1,40 +1,40 @@
-// 'use server'
-// import { redirect } from 'next/navigation'
-// import { PrismaClient } from '@prisma/client'
+'use server'
+import { redirect } from 'next/navigation'
+import { PrismaClient } from '@prisma/client'
 
-// const prisma = new PrismaClient()
+const prisma = new PrismaClient()
 
-// export interface CardData {
-//   Id: string,
-//   Question: string,
-//   Answer: string,
-//   Understanding: number,
-// }
+export interface CardData {
+  Id: string,
+  Question: string,
+  Answer: string,
+  Understanding: number,
+}
 
-// export async function getCardsFromDB() {
-//   const cards = await prisma.cards.findMany()
+export async function getCardsFromDB() {
+  const cards = await prisma.cards.findMany()
 
-//   return cards
-// }
+  return cards
+}
 
-// export async function addCard(form: FormData) {
-//   await prisma.cards.create({
-//     data: {
-//       Question: form.get("question") as string,
-//       Answer: form.get("answer") as string,
-//     },
-//   })
+export async function addCard(form: FormData) {
+  await prisma.cards.create({
+    data: {
+      Question: form.get("question") as string,
+      Answer: form.get("answer") as string,
+    },
+  })
 
-//   redirect("/add")
-// }
+  redirect("/add")
+}
 
-// export async function updateCardUnderstanding(id: string, understanding: number) {
-//   await prisma.cards.update({
-//     where: {
-//       Id: id,
-//     },
-//     data: {
-//       Understanding: understanding,
-//     },
-//   })
-// }
+export async function updateCardUnderstanding(id: string, understanding: number) {
+  await prisma.cards.update({
+    where: {
+      Id: id,
+    },
+    data: {
+      Understanding: understanding,
+    },
+  })
+}
