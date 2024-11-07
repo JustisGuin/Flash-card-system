@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "prompt": "What is the capital city of France?",
+        "answer": "Paris",
+        "understanding": "90",
+        "scheduledTime": ""
+    },
+    {
+        "id": 2,
+        "prompt": "What is the chemical symbol for gold?",
+        "answer": "Au",
+        "understanding": "85",
+        "scheduledTime": ""
+    },
+    {
+        "id": 3,
+        "prompt": "Who wrote the play 'Romeo and Juliet'?",
+        "answer": "William Shakespeare",
+        "understanding": "80",
+        "scheduledTime": ""
+    },
+    {
+        "id": 4,
+        "prompt": "What is the largest planet in our solar system?",
+        "answer": "Jupiter",
+        "understanding": "90",
+        "scheduledTime": ""
+    },
+    {
+        "id": 5,
+        "prompt": "What is the process by which plants make their food?",
+        "answer": "Photosynthesis",
+        "understanding": "75",
+        "scheduledTime": ""
+    },
+    {
+        "id": 6,
+        "prompt": "What is the main language spoken in Brazil?",
+        "answer": "Portuguese",
+        "understanding": "80",
+        "scheduledTime": ""
+    },
+    {
+        "id": 7,
+        "prompt": "What is the hardest natural substance on Earth?",
+        "answer": "Diamond",
+        "understanding": "85",
+        "scheduledTime": ""
+    },
+    {
+        "id": 8,
+        "prompt": "Who painted the Mona Lisa?",
+        "answer": "Leonardo da Vinci",
+        "understanding": "90",
+        "scheduledTime": ""
+    },
+    {
+        "id": 9,
+        "prompt": "What is the smallest prime number?",
+        "answer": "2",
+        "understanding": "70",
+        "scheduledTime": ""
+    },
+    {
+        "id": 10,
+        "prompt": "What is the main ingredient in guacamole?",
+        "answer": "Avocado",
+        "understanding": "75",
+        "scheduledTime": ""
+    }
+]

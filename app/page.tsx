@@ -1,7 +1,6 @@
 'use client'
 import Link from 'next/link'
 export default function startPage(){
-
   return(
   <div>
     <h1>Welcome to whatever this is</h1>

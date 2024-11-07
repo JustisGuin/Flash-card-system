@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import NavBar from "@/app/comp/NavigationBar"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -15,7 +16,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Project 2 spaced repetition system",
-  description: "A spaced repetition system is a flashcard system that stores dat",
+  description: "A spaced repetition system is a flashcard system that stores data",
 };
 
 export default function RootLayout({
@@ -25,9 +26,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <NavBar/>
         {children}
       </body>
     </html>
