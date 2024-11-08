@@ -1,21 +1,19 @@
 'use client'
 import { useState, useEffect } from 'react';
 
-
 interface Card {
-  question: string
-  answer: string
-  understanding: number
+  id: string; // Assuming each card has a unique id
+  question: string;
+  answer: string;
+  understanding: number;
 }
-
 
 interface CardReportProps {
-  card: Card
+  card: Card;
 }
 
-
 function CardReport({ card }: CardReportProps) {
-  const percentUnderstood = Math.round(card.understanding * 100)
+  const percentUnderstood = Math.round(card.understanding * 100);
 
   return (
     <div className="flex">
@@ -26,28 +24,28 @@ function CardReport({ card }: CardReportProps) {
         {card.question}
       </div>
     </div>
-  )
+  );
 }
 
 export default function Summary() {
-  const [cards, setCards] = useState<Card[] | null>(null)
+  const [cards, setCards] = useState<Card[] | null>(null);
 
   useEffect(() => {
     async function fetchCards() {
-      let cardsResponse = await fetch('/data.json')
-      let cards: Card[] = await cardsResponse.json()
+      const cardsResponse = await fetch('/data.json');
+      const cards: Card[] = await cardsResponse.json();
       
       setCards(cards);
     }
-    fetchCards()
-  }, [])
+    fetchCards();
+  }, []);
 
   if (cards === null) {
-    return <div>Loading cards...</div>
+    return <div>Loading cards...</div>;
   }
 
   if (cards.length === 0) {
-    return <div>Add a card and start studying to see your summary!</div>
+    return <div>Add a card and start studying to see your summary!</div>;
   }
 
   return (
@@ -56,10 +54,10 @@ export default function Summary() {
       <div>
         {
           cards.map((card: Card) => (
-            <CardReport card={card}/> // Added key prop
+            <CardReport key={card.id} card={card} /> // Adding the key prop here
           ))
         }
       </div>
     </div>
-  )
+  );
 }
