@@ -1,70 +1,82 @@
-"use client";
-import { useState } from "react";
+// src/app/comp/Study.tsx
+'use client';
 
-interface Card {
-  id: number;
-  prompt: string;
-  answer: string;
-  understanding: string; // Assuming understanding is a string
+import { useEffect, useState } from 'react';
+import { Card, useCards } from '@/app/comp/cards';
+import CardEvaluator from '@/app/comp/cardEvaluator';
+import { useUnderstanding } from '@/app/comp/UnderstandingContext'; // Import the context
+
+// Function to pick a random card
+function pickCard(cards: Card[] | null) {
+  if (cards == null || cards.length === 0) {
+    return null;
+  }
+
+  const randomIndex = Math.floor(Math.random() * cards.length);
+  return cards[randomIndex];
 }
 
-interface AnswerRevealSectionProps {
-  isAnswerRevealed: boolean;
-  answerText: string;
-}
+export default function Study() {
+  const { understandingCache, updateUnderstanding } = useUnderstanding(); // Use the context
+  const cards: Card[] | null = useCards();
+  const [currentCard, setCurrentCard] = useState<Card | null>(null);
 
-function AnswerRevealSection({ isAnswerRevealed, answerText }: AnswerRevealSectionProps) {
-  if (isAnswerRevealed) {
-    return (
-      <div>
-        <h1>{answerText}</h1>
-        <p>Rate the question difficulty:</p>
-        <div className="flex content-center">
-          <button className="standard-button w-56 h-20 border-easy inline-flex">
-            Easy
-          </button>
-          <button className="standard-button w-56 h-20 border-medium inline-flex">
-            Medium
-          </button>
-          <button className="standard-button w-56 h-20 border-hard inline-flex">
-            Hard
-          </button>
+  useEffect(() => {
+    const card = pickCard(cards);
+    if (!card) {
+      return;
+    }
+    setCurrentCard(card);
+  }, [cards]);
+
+  const handleNextQuestion = () => {
+    const newCard = pickCard(cards);
+    setCurrentCard(newCard);
+  };
+
+  function InteractableSection({ answer }: { answer: string }) {
+    const [answerRevealed, setAnswerRevealed] = useState(false);
+
+    function revealAnswer() {
+      setAnswerRevealed(true);
+    }
+
+    if (answerRevealed) {
+      return (
+        <div className="flex flex-col items-center mt-4">
+          <div className="bg-white shadow-lg rounded-lg p-6 mb-4 w-full max-w-md">
+            <h1 className="text-xl font-bold text-center text-black">{answer}</h1>
+          </div>
+          <p className="mt-4 text-lg">Rate the question difficulty:</p>
+          {currentCard && (
+            <CardEvaluator
+              card={currentCard}
+              onUpdate={updateUnderstanding}
+              onNextQuestion={handleNextQuestion} // Pass the function here
+              understandingCache={understandingCache}
+            />
+          )}
         </div>
-      </div>
-    );
-  }
+      );
+    }
 
-  return (
-    <button className="standard-button">
-      Reveal
-    </button>
-  );
-}
-
-interface StudyProps {
-  studyCards?: Card[]; // Make it optional
-}
-
-export default function Study({ studyCards = [] }: StudyProps) { // Default to an empty array
-  const [isAnswerRevealed, setIsAnswerRevealed] = useState(false);
-
-  if (studyCards.length == 0) {
     return (
-      <div>
-        <p>Cards are loading, please wait.</p>
-      </div>
+      <button onClick={revealAnswer} className="mt-4 bg-purple-500 text-white rounded-lg shadow-md hover:bg-purple-600 transition duration-300 p-4 w-full max-w-md">
+        Reveal
+      </button>
     );
   }
 
   return (
-    <div>
-      <h1>What is the answer?</h1>
-      {studyCards.map((card) => (
-        <AnswerRevealSection key={card.id} isAnswerRevealed={isAnswerRevealed} answerText={card.answer} />
-      ))}
-      <button onClick={() => setIsAnswerRevealed(!isAnswerRevealed)}>
-        {isAnswerRevealed ? "Hide Answers" : "Reveal Answers"}
-      </button>
+    <div className="flex flex-col items-center justify-center p-4 bg-black min-h-screen">
+      {currentCard ? (
+        <>
+          <h1 className="text-3xl font-bold text-center">{currentCard.question}</h1>
+          <InteractableSection answer={currentCard.answer} />
+        </>
+      ) : (
+        <p className="text-xl">No cards available.</p>
+      )}
     </div>
   );
 }
