@@ -64,7 +64,7 @@ export default function Summary() {
             return null; // Skip removed cards
           }
 
-          const understandingPercentage = Math.round((understandingCache[card.id] || 0) * 100);
+          const understandingPercentage = Math.round((understandingCache[card.id] || 0) * 20);
 
           return (
             <CardItem key={card.id} card={card} understandingPercentage={understandingPercentage} onRemove={() => handleRemoveCard(card.id)} />

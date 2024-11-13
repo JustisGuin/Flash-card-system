@@ -4,8 +4,8 @@ import React, { createContext, useContext, useState } from 'react';
 
 // Card interface
 interface Card {
-  id: number;
-  prompt: string;
+  id: string; // Change to string for consistency
+  question: string; // Use question instead of prompt
   answer: string;
 }
 
@@ -13,8 +13,6 @@ interface Card {
 interface UnderstandingContextType {
   understandingCache: { [id: string]: number };
   updateUnderstanding: (cardId: string, newUnderstanding: number) => void;
-
-  // New card management methods
   cards: Card[];
   addCard: (card: Card) => void;
 }

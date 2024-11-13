@@ -16,8 +16,8 @@ async function seed() {
         data: {
           prompt: card.prompt,
           answer: card.answer,
-          understanding: parseInt(card.understanding),  // Ensure it's an integer
-          // Remove scheduledTime
+          understanding: parseInt(card.understanding),  
+
         },
       });
     }

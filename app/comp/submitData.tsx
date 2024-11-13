@@ -53,7 +53,7 @@ export async function removeCard(id: string) {
 export async function updateCardEvaluator(id: string, understanding: number) {
   await prisma.question.update({
     where: {
-      id: parseInt(id),  // Again, ensure you're passing an integer
+      id: parseInt(id),  
     },
     data: {
       understanding: understanding,
