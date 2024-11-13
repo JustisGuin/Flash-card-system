@@ -1,4 +1,4 @@
-// src/app/comp/CardEvaluator.tsx
+
 'use client';
 import React, { useState } from "react";
 import { Card } from "@/app/comp/cards";

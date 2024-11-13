@@ -1,4 +1,4 @@
-// src/app/comp/cards.tsx
+
 'use client';
 import { useState, useEffect } from 'react';
 
@@ -9,7 +9,7 @@ export interface Card {
   id: string;
   question: string;
   answer: string;
-  understanding: number; // Ensure this property is included
+  understanding: number; 
 }
 
 // Custom hook to fetch cards
@@ -21,7 +21,7 @@ export function useCards() {
       // Fetch cards data from the server
       const cardsData = await getCardsFromVercel();
 
-      // Map the server response to the card structure
+      
       const cards = cardsData.map((cardData: CardData) => ({
         id: cardData.Id.toString(),  // Convert to string for consistency in the frontend
         question: cardData.Question,

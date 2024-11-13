@@ -1,4 +1,4 @@
-// src/app/summary/page.tsx
+
 'use client';
 
 import { useState } from 'react';
@@ -8,11 +8,11 @@ import { useUnderstanding } from '@/app/comp/UnderstandingContext';
 
 function getColorForUnderstanding(percentage: number) {
   if (percentage < 25) {
-    return 'rgb(235, 93, 89)'; // Red for low understanding
+    return 'rgb(235, 93, 89)'; 
   } else if (percentage < 50) {
-    return 'rgb(235, 198, 89)'; // Yellow for medium understanding
+    return 'rgb(235, 198, 89)'; 
   } else {
-    return 'rgb(153, 235, 89)'; // Green for high understanding
+    return 'rgb(153, 235, 89)'; 
   }
 }
 
@@ -61,7 +61,7 @@ export default function Summary() {
         </div>
         {cards.map((card: Card) => {
           if (removedCardIds.includes(card.id)) {
-            return null; // Skip removed cards
+            return null; 
           }
 
           const understandingPercentage = Math.round((understandingCache[card.id] || 0) * 20);

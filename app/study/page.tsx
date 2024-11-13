@@ -1,10 +1,10 @@
-// src/app/comp/Study.tsx
+
 'use client';
 
 import { useEffect, useState } from 'react';
 import { Card, useCards } from '@/app/comp/cards';
 import CardEvaluator from '@/app/comp/cardEvaluator';
-import { useUnderstanding } from '@/app/comp/UnderstandingContext'; // Import the context
+import { useUnderstanding } from '@/app/comp/UnderstandingContext';
 
 // Function to pick a random card
 function pickCard(cards: Card[] | null) {
@@ -17,7 +17,7 @@ function pickCard(cards: Card[] | null) {
 }
 
 export default function Study() {
-  const { understandingCache, updateUnderstanding } = useUnderstanding(); // Use the context
+  const { understandingCache, updateUnderstanding } = useUnderstanding(); 
   const cards: Card[] | null = useCards();
   const [currentCard, setCurrentCard] = useState<Card | null>(null);
 
@@ -52,7 +52,7 @@ export default function Study() {
             <CardEvaluator
               card={currentCard}
               onUpdate={updateUnderstanding}
-              onNextQuestion={handleNextQuestion} // Pass the function here
+              onNextQuestion={handleNextQuestion} 
               understandingCache={understandingCache}
             />
           )}

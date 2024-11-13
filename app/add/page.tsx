@@ -1,4 +1,4 @@
-// src/app/comp/AddCard.tsx
+
 "use client";
 import { useState } from "react";
 import { useUnderstanding } from '@/app/comp/UnderstandingContext';

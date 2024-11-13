@@ -1,4 +1,4 @@
-// app/comp/NavigationBar.tsx
+
 import Link from "next/link";
 import {routes} from "./routes"
 
