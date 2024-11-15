@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -6,14 +5,33 @@ import { Card, useCards } from '@/app/comp/cards';
 import CardEvaluator from '@/app/comp/cardEvaluator';
 import { useUnderstanding } from '@/app/comp/UnderstandingContext';
 
-// Function to pick a random card
-function pickCard(cards: Card[] | null) {
+
+function pickCard(cards: Card[] | null, understandingCache: any) {
   if (cards == null || cards.length === 0) {
     return null;
   }
 
-  const randomIndex = Math.floor(Math.random() * cards.length);
-  return cards[randomIndex];
+ 
+  const weightedCards = cards.map(card => ({
+    card,
+    understanding: understandingCache[card.id] || 0, 
+  }));
+
+  
+  weightedCards.sort((a, b) => a.understanding - b.understanding);
+
+  const totalUnderstanding = weightedCards.reduce((sum, item) => sum + (100 - item.understanding), 0);
+  const randomValue = Math.random() * totalUnderstanding;
+  
+  let cumulative = 0;
+  for (const item of weightedCards) {
+    cumulative += (100 - item.understanding); 
+    if (randomValue < cumulative) {
+      return item.card;
+    }
+  }
+  
+  return null; 
 }
 
 export default function Study() {
@@ -22,15 +40,15 @@ export default function Study() {
   const [currentCard, setCurrentCard] = useState<Card | null>(null);
 
   useEffect(() => {
-    const card = pickCard(cards);
+    const card = pickCard(cards, understandingCache);
     if (!card) {
       return;
     }
     setCurrentCard(card);
-  }, [cards]);
+  }, [cards, understandingCache]);
 
   const handleNextQuestion = () => {
-    const newCard = pickCard(cards);
+    const newCard = pickCard(cards, understandingCache);
     setCurrentCard(newCard);
   };
 

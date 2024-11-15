@@ -2,14 +2,14 @@
 'use client'
 import React, { createContext, useContext, useState } from 'react';
 
-// Card interface
+
 interface Card {
-  id: string; // Change to string for consistency
-  question: string; // Use question instead of prompt
+  id: string; 
+  question: string; 
   answer: string;
 }
 
-// Understanding context type
+
 interface UnderstandingContextType {
   understandingCache: { [id: string]: number };
   updateUnderstanding: (cardId: string, newUnderstanding: number) => void;
@@ -21,7 +21,7 @@ const UnderstandingContext = createContext<UnderstandingContextType | undefined>
 
 export const UnderstandingProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [understandingCache, setUnderstandingCache] = useState<{ [id: string]: number }>({});
-  const [cards, setCards] = useState<Card[]>([]); // State for cards
+  const [cards, setCards] = useState<Card[]>([]); 
 
   const updateUnderstanding = (cardId: string, newUnderstanding: number) => {
     setUnderstandingCache((prevCache) => ({

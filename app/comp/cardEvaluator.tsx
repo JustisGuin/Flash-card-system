@@ -11,19 +11,19 @@ export enum DifficultyRating {
 
 interface CardEvaluatorProps {
   card: Card;
-  onUpdate: (cardId: string, newUnderstanding: number) => void; // Function to update understanding
-  onNextQuestion: () => void; // Function to move to the next question
-  understandingCache: { [id: string]: number }; // Understanding cache
+  onUpdate: (cardId: string, newUnderstanding: number) => void; 
+  onNextQuestion: () => void; 
+  understandingCache: { [id: string]: number };
 }
 
 const CardEvaluator: React.FC<CardEvaluatorProps> = ({ card, onUpdate, onNextQuestion, understandingCache }) => {
   const [understanding, setUnderstanding] = useState(understandingCache[card.id] || 0);
 
   const handleRating = (rating: DifficultyRating) => {
-    const newUnderstanding = rating; // Assuming the rating directly translates to understanding
+    const newUnderstanding = rating; 
     setUnderstanding(newUnderstanding);
-    onUpdate(card.id, newUnderstanding); // Call the onUpdate function
-    onNextQuestion(); // Move to the next question
+    onUpdate(card.id, newUnderstanding); 
+    onNextQuestion(); 
   };
 
   return (

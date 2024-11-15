@@ -4,8 +4,8 @@ const path = require('path');
 
 const prisma = new PrismaClient();
 
-// Path to your data.json file
-const dataFilePath = path.join(process.cwd(), 'data.json');
+
+const dataFilePath = path.join(process.cwd(), 'public','data.json');
 const rawData = fs.readFileSync(dataFilePath, 'utf8');
 const data = JSON.parse(rawData);
 

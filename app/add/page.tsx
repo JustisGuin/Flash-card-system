@@ -4,24 +4,24 @@ import { useState } from "react";
 import { useUnderstanding } from '@/app/comp/UnderstandingContext';
 
 const AddCard: React.FC = () => {
-  const { addCard } = useUnderstanding(); // Get addCard function from context
+  const { addCard } = useUnderstanding(); 
   const [prompt, setPrompt] = useState<string>("");
   const [answer, setAnswer] = useState<string>("");
 
   const handleAddCard = () => {
     if (!prompt || !answer) {
-      alert("Please fill in both prompt and answer."); // Simple validation
+      alert("Please fill in both prompt and answer."); 
       return;
     }
     
     const newCard = {
-      id: Date.now().toString(), // Use toString for consistency
-      question: prompt, // Assuming you want to show prompt as question
+      id: Date.now().toString(), 
+      question: prompt, 
       answer,
     };
-    addCard(newCard); // Add card to context
-    setPrompt(""); // Clear input after adding
-    setAnswer(""); // Clear input after adding
+    addCard(newCard); 
+    setPrompt(""); 
+    setAnswer(""); 
   };
 
   return (
