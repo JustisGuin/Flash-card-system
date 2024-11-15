@@ -1,3 +1,5 @@
+// Study.tsx
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -5,37 +7,38 @@ import { Card, useCards } from '@/app/comp/cards';
 import CardEvaluator from '@/app/comp/cardEvaluator';
 import { useUnderstanding } from '@/app/comp/UnderstandingContext';
 
+interface UnderstandingCache {
+  [cardId: string]: number;
+}
 
-function pickCard(cards: Card[] | null, understandingCache: any) {
+function pickCard(cards: Card[] | null, understandingCache: UnderstandingCache) {
   if (cards == null || cards.length === 0) {
     return null;
   }
 
- 
   const weightedCards = cards.map(card => ({
     card,
-    understanding: understandingCache[card.id] || 0, 
+    understanding: understandingCache[card.id] || 0,
   }));
 
-  
   weightedCards.sort((a, b) => a.understanding - b.understanding);
 
   const totalUnderstanding = weightedCards.reduce((sum, item) => sum + (100 - item.understanding), 0);
   const randomValue = Math.random() * totalUnderstanding;
-  
+
   let cumulative = 0;
   for (const item of weightedCards) {
-    cumulative += (100 - item.understanding); 
+    cumulative += (100 - item.understanding);
     if (randomValue < cumulative) {
       return item.card;
     }
   }
-  
-  return null; 
+
+  return null;
 }
 
 export default function Study() {
-  const { understandingCache, updateUnderstanding } = useUnderstanding(); 
+  const { understandingCache, updateUnderstanding } = useUnderstanding();
   const cards: Card[] | null = useCards();
   const [currentCard, setCurrentCard] = useState<Card | null>(null);
 
@@ -70,7 +73,7 @@ export default function Study() {
             <CardEvaluator
               card={currentCard}
               onUpdate={updateUnderstanding}
-              onNextQuestion={handleNextQuestion} 
+              onNextQuestion={handleNextQuestion}
               understandingCache={understandingCache}
             />
           )}
