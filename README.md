@@ -83,7 +83,7 @@ By utilizing this structured approach, the Flashcard Study App not only enhances
 <!-- CONTACT -->
 ## Contact
 
-Justis Guin- [LinkedIn]([https://www.linkedin.com/in/your_username](https://www.linkedin.com/in/justis-guin-5b1b54273/))
+Justis Guin - [LinkedIn](https://www.linkedin.com/in/justis-guin-5b1b54273/)
 Feel free to reach out!
 
 
