@@ -26,7 +26,7 @@
 
 _Below are instructions for using the application. Since the app is hosted online, you can access it directly without any installation._
 
-1. Visit the live application at [Flash Card System]([https://card-repetition-project.vercel.app/](https://card-repetition-project.vercel.app/study)).
+<!--1. Visit the live application at [Flash Card System]([https://card-repetition-project.vercel.app/study). -->
  
 ## Usage
 
