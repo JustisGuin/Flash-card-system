@@ -1,5 +1,5 @@
 # Flash Card System
-![Flash Card System](https://github.com/user-attachments/assets/3828207e-23f9-410e-b0f3-5672c41694c5)
+ <!-- ![Flash Card System](https://github.com/user-attachments/assets/3828207e-23f9-410e-b0f3-5672c41694c5) -->
 
 
 ## About The Project
